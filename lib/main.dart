@@ -1,4 +1,5 @@
 import 'package:eremita_flutter/scenery/scenery.dart';
+import 'package:eremita_flutter/ui/widgets/flutter_banner_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,8 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Eremita of Icberg Flutter Game',
-      home: Scenery(),
+      debugShowCheckedModeBanner: false,
+      title: 'Eremita of Iceberg Flutter Game',
+      home: FlutterBannerWidget(child: Scenery()),
     );
   }
 }
