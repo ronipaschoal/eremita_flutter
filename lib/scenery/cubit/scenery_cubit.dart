@@ -32,12 +32,13 @@ class SceneryCubit extends Cubit<SceneryState> {
       return;
     }
 
-    if (!state.isJumping && state.jumpingTimes < 3) jump();
+    if (!state.isJumping || state.isJumping && state.jumpingTimes < 3) jump();
   }
 
   void jump() {
-    final jumpingTimes = (state as SceneryStartedState).jumpingTimes + 1;
-    emit(SceneryStartedState(isJumping: true, jumpingTimes: jumpingTimes));
+    final state = this.state as SceneryStartedState;
+    final jumpingTimes = state.jumpingTimes + 1;
+    emit(state.copyWith(isJumping: true, jumpingTimes: jumpingTimes));
     controller.forward();
   }
 }
