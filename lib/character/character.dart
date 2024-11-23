@@ -5,13 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class Character extends AnimatedWidget {
   final Size scenerySize;
   final Animation<double> animation;
-  final bool isJumping;
 
   const Character({
     super.key,
     required this.scenerySize,
     required this.animation,
-    required this.isJumping,
   }) : super(listenable: animation);
 
   @override
@@ -28,12 +26,12 @@ class Character extends AnimatedWidget {
           right: (scenerySize.width * 0.5) - 30,
           child: Builder(
             builder: (context) {
-              if (state is SceneryInitial || state is SceneryGameOverState) {
-                return Image.asset('assets/img/eremita.png');
+              if (state is SceneryStartedState) {
+                return state.isJumping
+                    ? Image.asset('assets/img/eremita_jumping.png')
+                    : Image.asset('assets/img/eremita_walking.gif');
               }
-              return !isJumping
-                  ? Image.asset('assets/img/eremita_walking.gif')
-                  : Image.asset('assets/img/eremita_jumping.png');
+              return Image.asset('assets/img/eremita.png');
             },
           ),
         );

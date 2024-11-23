@@ -13,32 +13,24 @@ class Scenery extends StatefulWidget {
 }
 
 class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
-  var jumping = false;
-  var jumpingTimes = 0;
-  var onTop = false;
+  late final controller = AnimationController(
+    duration: const Duration(milliseconds: 600),
+    vsync: this,
+  );
 
-  late final Animation<double> animation;
-  late final AnimationController controller;
+  late final animation = CurvedAnimation(
+    parent: controller,
+    curve: Curves.easeOut,
+  );
+
+  late final _cubit = SceneryCubit(
+    controller: controller,
+    animation: animation,
+  );
 
   late final size = MediaQuery.of(context).size;
-  late final groundSize = Size(size.width, size.height * 0.1);
   late final gameStageSize = Size(size.width, size.height * 0.9);
-
-  @override
-  void initState() {
-    super.initState();
-    controller = AnimationController(
-      duration: const Duration(milliseconds: 600),
-      vsync: this,
-    );
-
-    animation = CurvedAnimation(
-      parent: controller,
-      curve: Curves.easeOut,
-    );
-
-    animation.addStatusListener(_listener);
-  }
+  late final groundSize = Size(size.width, size.height * 0.1);
 
   @override
   void dispose() {
@@ -46,29 +38,12 @@ class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  void _listener(AnimationStatus status) {
-    if (status == AnimationStatus.completed) {
-      controller.reverse();
-    } else if (status == AnimationStatus.dismissed) {
-      jumpingTimes = 0;
-      setState(() => jumping = false);
-    }
-  }
-
-  void _jump() {
-    if (jumping && jumpingTimes > 3) return;
-
-    jumpingTimes++;
-    setState(() => jumping = true);
-    controller.forward();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SceneryCubit(),
+      create: (context) => _cubit,
       child: GestureDetector(
-        onTap: _jump,
+        onTap: _cubit.onTap,
         child: Column(
           children: [
             GameStageWidget(
@@ -76,7 +51,6 @@ class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
               character: Character(
                 animation: animation,
                 scenerySize: size,
-                isJumping: jumping,
               ),
             ),
             GroundWidget(size: groundSize),
