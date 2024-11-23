@@ -28,10 +28,6 @@ class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
     animation: animation,
   );
 
-  late final size = MediaQuery.of(context).size;
-  late final gameStageSize = Size(size.width, size.height * 0.9);
-  late final groundSize = Size(size.width, size.height * 0.1);
-
   @override
   void dispose() {
     controller.dispose();
@@ -40,6 +36,8 @@ class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+
     return BlocProvider(
       create: (context) => _cubit,
       child: GestureDetector(
@@ -47,13 +45,21 @@ class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
         child: Column(
           children: [
             GameStageWidget(
-              size: gameStageSize,
+              size: Size(
+                size.width,
+                size.height * 0.9,
+              ),
               character: Character(
                 animation: animation,
                 scenerySize: size,
               ),
             ),
-            GroundWidget(size: groundSize),
+            GroundWidget(
+              size: Size(
+                size.width,
+                size.height * 0.1,
+              ),
+            ),
           ],
         ),
       ),
