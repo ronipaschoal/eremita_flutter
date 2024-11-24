@@ -14,24 +14,37 @@ class Scenery extends StatefulWidget {
 }
 
 class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
-  late final controller = AnimationController(
+  late final _characterController = AnimationController(
     duration: const Duration(milliseconds: 600),
     vsync: this,
   );
 
-  late final animation = CurvedAnimation(
-    parent: controller,
+  late final _characterAnimation = CurvedAnimation(
+    parent: _characterController,
     curve: Curves.easeOut,
   );
 
+  late final _groundController = AnimationController(
+    duration: const Duration(milliseconds: 100),
+    vsync: this,
+  );
+
+  late final _groundAnimation = CurvedAnimation(
+    parent: _groundController,
+    curve: Curves.easeInOut,
+  );
+
   late final _cubit = SceneryCubit(
-    controller: controller,
-    animation: animation,
+    characterController: _characterController,
+    characterAnimation: _characterAnimation,
+    groundController: _groundController,
+    groundAnimation: _groundAnimation,
   );
 
   @override
   void dispose() {
-    controller.dispose();
+    _characterController.dispose();
+    _groundController.dispose();
     super.dispose();
   }
 
@@ -51,12 +64,13 @@ class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
                 size.height * 0.9,
               ),
               character: Character(
-                animation: animation,
+                animation: _characterAnimation,
                 scenerySize: size,
               ),
             ),
             Flexible(
               child: GroundWidget(
+                animation: _groundAnimation,
                 size: Size(
                   size.width,
                   size.height * 0.1,

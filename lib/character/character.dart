@@ -14,7 +14,7 @@ class Character extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sizeTween = Tween<double>(
+    final positionTween = Tween<double>(
       begin: 0.0,
       end: scenerySize.height * 0.5,
     );
@@ -22,7 +22,7 @@ class Character extends AnimatedWidget {
     return BlocBuilder<SceneryCubit, SceneryState>(
       builder: (context, state) {
         return Positioned(
-          bottom: sizeTween.evaluate(animation),
+          bottom: positionTween.evaluate(animation),
           right: (scenerySize.width * 0.5) - 30,
           child: Builder(
             builder: (context) {
