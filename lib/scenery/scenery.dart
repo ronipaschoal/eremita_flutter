@@ -3,6 +3,7 @@ import 'package:eremita_flutter/scenery/cubit/scenery_cubit.dart';
 import 'package:eremita_flutter/scenery/widgets/game_stage_widget.dart';
 import 'package:eremita_flutter/scenery/widgets/ground_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Scenery extends StatefulWidget {
@@ -54,10 +55,12 @@ class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
                 scenerySize: size,
               ),
             ),
-            GroundWidget(
-              size: Size(
-                size.width,
-                size.height * 0.1,
+            Flexible(
+              child: GroundWidget(
+                size: Size(
+                  size.width,
+                  size.height * 0.1,
+                ),
               ),
             ),
           ],
