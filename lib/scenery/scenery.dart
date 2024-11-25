@@ -1,4 +1,5 @@
 import 'package:eremita_flutter/character/character.dart';
+import 'package:eremita_flutter/menu/menu_start_widget.dart';
 import 'package:eremita_flutter/scenery/cubit/scenery_cubit.dart';
 import 'package:eremita_flutter/scenery/widgets/game_stage_widget.dart';
 import 'package:eremita_flutter/scenery/widgets/ground_widget.dart';
@@ -56,26 +57,33 @@ class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
       create: (context) => _cubit,
       child: GestureDetector(
         onTap: _cubit.onTap,
-        child: Column(
+        child: Stack(
           children: [
-            GameStageWidget(
-              size: Size(
-                size.width,
-                size.height * 0.9,
-              ),
-              character: Character(
-                animation: _characterAnimation,
-                scenerySize: size,
-              ),
-            ),
-            Flexible(
-              child: GroundWidget(
-                animation: _groundAnimation,
-                size: Size(
-                  size.width,
-                  size.height * 0.1,
+            Column(
+              children: [
+                GameStageWidget(
+                  size: Size(
+                    size.width,
+                    size.height * 0.9,
+                  ),
+                  character: Character(
+                    animation: _characterAnimation,
+                    scenerySize: size,
+                  ),
                 ),
-              ),
+                Flexible(
+                  child: GroundWidget(
+                    animation: _groundAnimation,
+                    size: Size(
+                      size.width,
+                      size.height * 0.1,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            MenuStartWidget(
+              size: size,
             ),
           ],
         ),

@@ -14,7 +14,11 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Eremita of Iceberg Flutter Game',
-      home: FlutterBannerWidget(child: Scenery()),
+      home: FlutterBannerWidget(
+        child: Scaffold(
+          body: Scenery(),
+        ),
+      ),
     );
   }
 }
