@@ -1,8 +1,9 @@
-import 'package:eremita_flutter/character/character.dart';
-import 'package:eremita_flutter/menu/menu_start_widget.dart';
+import 'package:eremita_flutter/scenery/widgets/character_widget.dart';
+import 'package:eremita_flutter/scenery/widgets/menu_start_widget.dart';
 import 'package:eremita_flutter/scenery/cubit/scenery_cubit.dart';
 import 'package:eremita_flutter/scenery/widgets/game_stage_widget.dart';
 import 'package:eremita_flutter/scenery/widgets/ground_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,7 +67,7 @@ class _SceneryState extends State<Scenery> with TickerProviderStateMixin {
                     size.width,
                     size.height * 0.9,
                   ),
-                  character: Character(
+                  character: CharacterWidget(
                     animation: _characterAnimation,
                     scenerySize: size,
                   ),

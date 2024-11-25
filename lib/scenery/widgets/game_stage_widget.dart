@@ -1,9 +1,9 @@
-import 'package:eremita_flutter/character/character.dart';
+import 'package:eremita_flutter/scenery/widgets/character_widget.dart';
 import 'package:flutter/material.dart';
 
 class GameStageWidget extends StatelessWidget {
   final Size size;
-  final Character character;
+  final CharacterWidget character;
 
   const GameStageWidget({
     super.key,

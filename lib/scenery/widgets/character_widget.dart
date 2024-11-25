@@ -2,11 +2,11 @@ import 'package:eremita_flutter/scenery/cubit/scenery_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Character extends AnimatedWidget {
+class CharacterWidget extends AnimatedWidget {
   final Size scenerySize;
   final Animation<double> animation;
 
-  const Character({
+  const CharacterWidget({
     super.key,
     required this.scenerySize,
     required this.animation,

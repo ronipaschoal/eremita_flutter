@@ -10,13 +10,11 @@ class FlutterBannerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Banner(
-        location: BannerLocation.topEnd,
-        message: 'Flutter',
-        color: const Color(0xFF1A73E8),
-        child: Center(child: child),
-      ),
+    return Banner(
+      location: BannerLocation.topEnd,
+      message: 'Flutter',
+      color: const Color(0xFF1A73E8),
+      child: Center(child: child),
     );
   }
 }
