@@ -58,4 +58,4 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: eremitaflutter.ronipaschoal.com.br
+        server-dir: eremitaflutter.ronipaschoal.com.br/
