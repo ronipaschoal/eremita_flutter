@@ -19,6 +19,7 @@ class MenuStartWidget extends StatelessWidget {
         }
         return Center(
           child: Container(
+            padding: const EdgeInsets.all(16.0),
             width: size.width * 0.8,
             height: size.height * 0.6,
             alignment: Alignment.center,
@@ -53,7 +54,7 @@ class MenuStartWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  'Toque na tela para iniciar ou pular!',
+                  'Toque na tela para iniciar e pular até 3x seguidas!',
                   style: TextStyle(
                     fontSize: 24.0,
                     color: Colors.white,
